@@ -147,10 +147,6 @@ public class DebugMenuUI : MonoBehaviour
                     { InventoryManager.Instance.availableCurrency = currency; }
                 }
                 GUILayout.EndHorizontal();
-                
-                
-                
-                
                 /*
                  * Task 3c: The Tool
                  *
@@ -173,18 +169,39 @@ public class DebugMenuUI : MonoBehaviour
                  * This task can be considered as completed once all three handles can
                  * be controlled from the Cheat Console.
                  */
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Label("Interactive: ", GUILayout.Width(WINDOW_DIMENSION.x / 4.0f));
+                    GameManager.Instance.interactiveMode = GUI.Toggle (new Rect (WINDOW_DIMENSION.x / 3.8f, 25, 100, 30),
+                        GameManager.Instance.interactiveMode, "");
+                }
+                GUILayout.EndHorizontal();
                 
-                
-                
-                
-                
-                // Placing the elements next to each other.
+                GUILayout.BeginHorizontal();
+                {
+                    GUILayout.Label("Volume: ", GUILayout.Width(WINDOW_DIMENSION.x / 4.0f));
+                    var volume = SoundManager.Instance.masterVolume;
+                    volume = (int) GUILayout.HorizontalSlider(volume, -80.0f, 20.0f, 
+                        GUILayout.ExpandWidth(true));
+                    if (GUI.changed)
+                    { SoundManager.Instance.masterVolume = volume; }
+                    if (GUI.Button (new Rect (WINDOW_DIMENSION.x - 70, 25, 50, 20), "Mute"))
+                    {
+                        SoundManager.Instance.masterMuted = !SoundManager.Instance.masterMuted;
+                    }
+                }
+                GUILayout.EndHorizontal();
+
+
+
+
+                    // Placing the elements next to each other.
                 GUILayout.BeginHorizontal();
                 {
                     for (var iii = 1; iii <= 10; ++iii)
                     { // Create a set of 10 sliders all sharing the same value.
                         mDummyValue = GUILayout.VerticalSlider(
-                            mDummyValue, 0.0f, 10.0f * iii, 
+                            mDummyValue, 0.0f, 1.0f * iii, 
                             GUILayout.ExpandHeight(true)
                         );
                     }
