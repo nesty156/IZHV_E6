@@ -193,10 +193,13 @@ public class DebugMenuUI : MonoBehaviour
                      * it was pressed. So, all you need to do is place the character-enabling
                      * code into the if statement and voila!
                      */
-                    if (GUILayout.Button("Enable\nDummy\nCharacter", 
-                        GUILayout.ExpandWidth(true), 
+
+                    if (GUILayout.Button("Enable\nDummy\nCharacter",
+                        GUILayout.ExpandWidth(true),
                         GUILayout.ExpandHeight(true)))
-                    { /* Fill the code here! */ }
+                    {
+                        GameManager.Instance.TogglePlayerCharacter();
+                    }
                 }
                 GUILayout.EndHorizontal();
                 // Do not forget to end each group in the correct order!
